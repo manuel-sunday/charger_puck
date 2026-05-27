@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell([System.IO.Ports.SerialPort]::GetPortNames\\(\\))",
+      "PowerShell(Get-PnpDevice -Class Ports)",
+      "PowerShell(Get-WMIObject Win32_SerialPort)",
+      "PowerShell(Get-PnpDevice | Where-Object { $_.FriendlyName -match 'COM' } | Select-Object FriendlyName, Status)",
+      "PowerShell(reg query \"HKLM\\\\HARDWARE\\\\DEVICEMAP\\\\SERIALCOMM\")",
+      "PowerShell(Get-ChildItem \"$env:USERPROFILE\\\\.platformio\\\\penv\\\\Scripts\\\\pio.exe\" -ErrorAction SilentlyContinue)"
+    ]
+  }
+}
