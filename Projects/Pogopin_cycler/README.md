@@ -13,6 +13,8 @@ Firmware for a FUYU FSL30 linear rail used to cycle pogo pin contacts for durabi
 
 ### Wiring
 
+**Arduino → TMC2209 (control signals)**
+
 | Arduino Pin | TMC2209 Pin |
 |---|---|
 | D3 | STEP |
@@ -20,9 +22,25 @@ Firmware for a FUYU FSL30 linear rail used to cycle pogo pin contacts for durabi
 | GND | GND |
 | 5V | VIO |
 
-Motor coils connect to A1/A2 (coil 1) and B1/B2 (coil 2) on the TMC2209. Use a multimeter in resistance mode to identify coil pairs — wires in the same coil read ~5Ω, wires from different coils read open circuit.
+**Power supply → TMC2209**
 
-Power the TMC2209 VM pin with 12V. Set the VREF potentiometer so supply current is ~0.8A (≈ motor rated current).
+| Power Supply | TMC2209 Pin |
+|---|---|
+| 12V | VM |
+| GND | GND |
+
+**TMC2209 → Motor (2-phase, 4 wires)**
+
+| TMC2209 Pin | Motor |
+|---|---|
+| A1 | Coil 1 wire A |
+| A2 | Coil 1 wire B |
+| B1 | Coil 2 wire A |
+| B2 | Coil 2 wire B |
+
+Use a multimeter in resistance mode to identify coil pairs — wires in the same coil read ~5Ω, wires from different coils read open circuit. If the motor runs in the wrong direction, swap A1↔A2 or B1↔B2 (not both).
+
+Set the VREF potentiometer so supply current draw is ~0.8A at 12V (≈ motor rated current).
 
 ## Commands
 
